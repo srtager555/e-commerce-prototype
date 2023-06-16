@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { connectAuthEmulator, getAuth } from "firebase/auth";
 import type { AppProps } from "next/app";
 import "@/styles/globals.css";
+import { MainLayout } from "@/layout/MainLayout";
 
 export default function App({ Component, pageProps }: AppProps) {
 	const app = initializeApp({
@@ -20,5 +21,9 @@ export default function App({ Component, pageProps }: AppProps) {
 		connectAuthEmulator(auth, "localhost:9099", { disableWarnings: true });
 	}
 
-	return <Component {...pageProps} />;
+	return (
+		<MainLayout>
+			<Component {...pageProps} />
+		</MainLayout>
+	);
 }
